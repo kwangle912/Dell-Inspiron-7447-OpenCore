@@ -20,11 +20,12 @@ Detail Spesification
 
 # Working
 * CPU Power Management
-* Sleep/Wake: working
+* Sleep/Wake
 * Restart/Shutdown
 * Internal Speaker, Audio Digital Out, Headphone and Microphone
 * Audio Realtek AC255 (layout-id = 20)
-* WiFi
+* Intel WiFi AC-3160
+* Disable dGPU (Card Nvidia GTX)
 * Brightness + Fn up/down
 * All USB Port
 * Trackpad
@@ -35,19 +36,27 @@ Not working
 * Etc
 
 # Installing
-* Copy EFI directory for OpenCore
+* Download [OpenCore Release](https://github.com/acidanthera/OpenCorePkg/releases)
+* Download [OpenCore Build-Repo](https://github.com/dortania/build-repo/releases)
+* Copy EFI directory for [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases)
 * OpenCore Install Guide for Laptop Haswell: https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/haswell.html#cleaning-up
 
-# WiFi
-Supported Devices :
-```
-- 3xxx: 3160 - 3165 - 3168
-- 4xxx: 4165
-- 7xxx: 7260 - 7265
-- 8xxx: 8260 - 8265
-- 9xxx: 9260 - 9461 - 9462 - 9560
-```
-* OpenCore" Copy Kext to /EFI/OC/KEXTS
+## Supported Intel WiFi Cards by itlwm
+````
+- 2000: `Supported`
+- 3xxx: `AC 3160`, `AC 3165`, `AC 3168`
+- 4xxx: `AC 4165`
+- 7xxx: `AC 7260`, `AC 7265`
+- 8xxx: `AC 8260`
+- 9xxx：`AC 9260`,`AC 9461`, `AC 9462`, `AC 9560`
+- 22000：`ax200`, `ax201`, `AC 9462`
+````
+- [Supported Devices](https://openintelwireless.github.io/itlwm/Compat.html)
+- Link download [AirportItlwm.kext](https://github.com/kwangle912/AirportItlwm-for-Hackintosh)
+* Disable SIP & install AirportItlwm into /Library/Extensions "With Hackintool" & rebuild kext cache then reboot (use AirportItlwm Catalina and install [Hackintool.app](https://github.com/headkaze/Hackintool/releases))
+
+
+* OpenCore: Copy kext to /EFI/OC/KEXTS
 * edit oc plist  "see methode for OpenCore Only" with PlistEdit Pro
 ```
  Add: BundlePath       string   itlwm.kext
@@ -58,8 +67,8 @@ Supported Devices :
       MinKernel        String
       PlistPath        String   Contents/Info.plist
 ```
-* Download HeliPort here.
+* Download [HeliPort.app](https://github.com/OpenIntelWireless/HeliPort/releases/tag/v1.0.1)
 * Copy Heliprt To Applications & Reboot
-* Run Heliport / check "Launch At Login
+* Run Heliport and check "Launch At Login
 * Note : if you want to reset the assignment to en0, 
 just delete /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist and reboot.
